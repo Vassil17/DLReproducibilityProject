@@ -9,3 +9,9 @@ Example evaluation of Taipei works, using the pretrained network. However, attem
 3. Put the path to each image in ./example_image/Taipei_test.txt (IN FUTURE SHOULD AUTOMATE THIS)
 4. Run >> python src/cityscapesscripts/evaluation/pil_resize.py ; This resizes the images to the correct (512,256) dimensions.
 5. Run >> sh scripts/infer_city2NMD.sh; This evaluates the images - the resulting visualisation can be found in  ./train_results/GACA/Taipei/iter_800/visualize
+
+
+
+Note: For step 3., you can use this command
+find $(pwd) -maxdepth 1 -type f -not -path '*/\.*'  >> ~/TU_Delft/FCNs_Wild/example_image/Taipei_test.txt
+
