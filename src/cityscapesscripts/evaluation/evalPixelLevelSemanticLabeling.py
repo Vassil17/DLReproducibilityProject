@@ -29,6 +29,7 @@ import os, sys
 import platform
 import fnmatch
 import argparse
+import cv2
 
 ### input argument ###
 parser = argparse.ArgumentParser()
@@ -584,6 +585,7 @@ def evaluatePair(predictionImgFileName, groundTruthImgFileName, confMatrix, inst
             printError("Unable to load " + groundTruthInstanceImgFileName)
 
     # Check for equal image sizes
+
     if (predictionImg.size[0] != groundTruthImg.size[0]):
         printError("Image widths of " + predictionImgFileName + " and " + groundTruthImgFileName + " are not equal.")
     if (predictionImg.size[1] != groundTruthImg.size[1]):

@@ -4,7 +4,7 @@ import time
 from datetime import datetime
 import numpy as np
 import os
-from src.custom_grad import WeakLoss
+from custom_grad import WeakLoss
 import argparse
 
 parser = argparse.ArgumentParser()
@@ -103,8 +103,9 @@ def step_function(x, start, end):
 
 def train():
     with tf.Graph().as_default():
-        
+        print("DEVICE USE")
         with tf.device('/gpu:0'):
+            print('GPU')
             model.build(batch_size=batch_size,img_w=input_width, img_h=input_height,
                         train=True, num_classes=19, city=city, 
                         random_init_fc8=False, random_init_adnn=True, debug=True)
