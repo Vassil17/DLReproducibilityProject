@@ -24,3 +24,28 @@ are set in the file.
 >> sh scripts/infer_city2NMD.sh 
 ```
 This evaluates the images - the resulting visualisation can be found in  ./train_results/GACA/Taipei/iter_800/visualize
+
+# The following section gives some unix scripts that allow you to manipulate the data formats to match the ones used by DataReader.py
+
+In order to merge every two lines onto the same line (requirement for data reader):
+```
+>> paste -d " "  - - < input.txt > output.txt
+```
+
+To retrieve path of all files + sort it:
+```
+>> find $(pwd) -maxdepth 1 -type f -not -path '*/\.*' | sort  >> ~/TU_Delft/cityscapes_val.txt
+```
+
+To extract all files from subfolders into one common folder:
+```
+>> find ~/Downloads/ -type f -print0 | xargs -0 mv -t ~/Videos
+```
+
+
+Notes:
+
+Make sure you have the python environment active.
+
+Need a lower version of Boost than 1.65.0 - Download from the website, extract .tar file, ./bootstrap as mentioned
+on the website and then set the version to the one you want in the CMakeLists.txt file.

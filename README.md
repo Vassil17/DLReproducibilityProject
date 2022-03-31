@@ -20,7 +20,7 @@ Tensorflow implementation of the paper for adapting semantic segmentation from t
 ## Dataset
 
 * Download [Cityscapes Dataset](https://www.cityscapes-dataset.com/)
-* Download [Synthia Dataset](http://synthia-dataset.com/download-2/)
+* Download [Synthia Dataset](http://synthia-dataset.net/downloads/)
 	* download the subset "SYNTHIA-RAND-CITYSCAPES" 
 * Download [NMD Dataset](https://yihsinchen.github.io/segmentation_adaptation/#Dataset)
 	* contains four subsets --- Taipei, Tokyo, Roma, Rio --- used as target domain (only testing data has annotations) 
