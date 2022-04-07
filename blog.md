@@ -1,19 +1,43 @@
 # FCNs in the Wild: Reproducibility Project for Deep Learning
-## Introduction:
+## 1. Introduction:
 In this blog post we will first introduce the paper that we were tasked with reproducing, namely FCNs in the Wild: Pixel-level Adversarial and Constraint-based Adaptation.
 We will go through the main concepts behind pixel-level image segmentation and domain adaptation. We will then explain the existing code implementations (one in PyTorch and one in TensorFlow).
 
 
-## FCNs in the Wild: Pixel-level Adversarial and Constraint-based Adaptation
-### What is Semantic Segmentation?
-First let's start with a simple explanation on what the task of semantic segmentation is, as well as what network architectures are typically used to perform this task. Semantic segmentation is essentially a classification task on a pixel-level - it aims to assign a label to each pixel in a given image. In classical classification tasks, such as for example a pedestrian detector, the model typically predicts which class is present in an image. Often these classifiers only deal with predicting whether the class is in the image, without actually saying where in the image. However we often are very concerned with the location of the detected object - for example in autonomous cars, we not only care about the presence of a pedestrian, but also about where the pedestrian is within the field of view of the car. One way to solve this problem is to split the image in many small regions and then check for the presence of a pedestrian in each of them. However since the size of a pedestrian is dynamic (and also changes based on their distance to the camera), it is difficult to set one common size for this image subset. Perhaps there is a better way of detecting not only the presence of a certain object in an image, but also its location?
+## 2. FCNs in the Wild: Pixel-level Adversarial and Constraint-based Adaptation
+### 2.1. What is Semantic Segmentation?
+First let's start with a simple explanation on what the task of semantic segmentation is, as well as what network architectures are typically used to perform this task. Semantic segmentation is part of the family known as Dense Prediction Tasks and is essentially a classification task on a pixel-level - it aims to assign a label to each pixel in a given image. In classical classification tasks, such as for example a pedestrian detector, the model typically predicts which class is present in an image. Often these classifiers only deal with predicting whether the class is in the image, without actually saying where in the image. However we often are very concerned with the location of the detected object - for example in autonomous cars, we not only care about the presence of a pedestrian, but also about where the pedestrian is within the field of view of the car. One way to solve this problem is to split the image in many small regions and then check for the presence of a pedestrian in each of them. However since the size of a pedestrian is dynamic (and also changes based on their distance to the camera), it is difficult to set one common size for this image subset. Perhaps there is a better way of detecting not only the presence of a certain object in an image, but also its location?
 
-Semantic segmentation aims at solving this problem by classifying each pixel in an image - it takes a raw image as an input and outputs a vector with the label for each of the pixels in the original raw image. The idea behind is to not only distinguish the different objects within the image (segmentation) but also learn what they represent (semantic). For normal image classification the common approach is to use a CNN for important feature extraction and then several Fully Connected Layers as the head, which perform the classification itself. In semantic segmengation the approach is to not use fully-connected layers, but instead to use a Fully-Convolutional Network (FCN) to train the whole end-to-end process, from detecting features in the image, to classifying each of the pixels.
-A very common architecture for semantic segmentation
-### What is domain adaptation and why is it needed?
+Semantic segmentation aims at solving this problem by classifying each pixel in an image - it takes a raw image as an input and outputs a vector with the label for each of the pixels in the original raw image. The idea behind is to not only distinguish the different objects within the image (segmentation) but also learn what they represent (semantics), i.e. which class they are part of. The figure below illustrates this by colouring each pixel corresponding to a car in blue, greenery in green and pedestrains in red.
+
+<p>
+<img src="https://user-images.githubusercontent.com/69580104/162279209-3d008ac0-784f-4901-b9d2-c5eb35b43607.jpeg" width="512" height="256" />
+  
+[Source](https://towardsdatascience.com/semantic-segmentation-of-150-classes-of-objects-with-5-lines-of-code-7f244fa96b6c)
+  
+<p>
+
+Hopefully you have seen why semantic segmentation is useful through the toy pedestrian detector example we mentioned earlier - not only does it tell you about the presence of a certain class in an image, but it shows you its exact spatial location within the image. Keeping to the current example of autonomous cars, this can be extremely powerful - your car is now not only able to detect pedestrians, but also the road, other vehicles, traffic signs and much more.
+  
+### 2.2. Architectures for Semantic Segmentation
+Now that we've established what semantic segmentation is and why it's useful, how can you actually use machine learning to obtain such a pixel-level classification? 
+  Well, for normal image classification the common approach is to use a CNN to detect and extract the important features, and then several Fully Connected Layers (FCLs) as the "head", which perform the classification task itself. One of the problems with this approach is that the FCLs require an input of fixed size - which also limits the size of the image.
+In semantic segmengation the approach is to not use fully-connected layers as the end of the network, but instead to use a Fully-Convolutional Network (FCN), such as AlexNet and VGG-16, to train the whole end-to-end process, from detecting features in the image, to classifying each of the pixels. One benefit of this is that an input image of any size can be used (since the kernels or convolutions can be applied across an image of any size).
+  The next figure, taken from [1], illustrates how this can be done, architecture-wise.
+
+<p>
+<img src="https://user-images.githubusercontent.com/69580104/162281381-4bdeee8a-7823-497b-a5b9-61be9ef77a51.png" width="512" height="256" />
+  
+[Source](https://arxiv.org/abs/1605.06211)
+  
+<p>
+
+As can be seen in the figure, through pooling (subsampling) the input size is reduced throughout the network - which is beneficial because it essentially allows a pixel in a deeper layer to have a larger receptive field, i.e. to "see" more pixels from the original image. However, our task is to classify each pixel in the image, hence we need to upsample, which is exactly what happens at the final "pixelwise prediction" layer. Now a pixel-wide prediction can be output at the last layer, which means that we can compare it to some ground truth and see how well the network performs. A commonly used loss function in this case is the *Cross-Entropy Loss*, which is the same as the one used for classical image classification tasks, only applied to each pair of pixels between output and ground truth. One issue is that the predictions might be too "coarse" due to the subsampling within the network and then upsampling to match the input image size. There are many different ways of dealing with this, for example by including skip layer connections which pass some shallow layers and fuse them with the coarse deep layers to obtain a better prediction. 
+  
+### 2.3What is domain adaptation and why is it needed?
 
 
-## Implementation
+## 3. Implementation
 There were two implementations available for this paper: one in PyTorch (link) and one in TensorFlow (link).
 
 ### PyTorch implementation:
