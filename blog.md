@@ -5,6 +5,12 @@ We will go through the main concepts behind pixel-level image segmentation and d
 
 
 ## FCNs in the Wild: Pixel-level Adversarial and Constraint-based Adaptation
+### What is Semantic Segmentation?
+First let's start with a simple explanation on what the task of semantic segmentation is, as well as what network architectures are typically used to perform this task. Semantic segmentation is essentially a classification task on a pixel-level - it aims to assign a label to each pixel in a given image. In classical classification tasks, such as for example a pedestrian detector, the model typically predicts which class is present in an image. Often these classifiers only deal with predicting whether the class is in the image, without actually saying where in the image. However we often are very concerned with the location of the detected object - for example in autonomous cars, we not only care about the presence of a pedestrian, but also about where the pedestrian is within the field of view of the car. One way to solve this problem is to split the image in many small regions and then check for the presence of a pedestrian in each of them. However since the size of a pedestrian is dynamic (and also changes based on their distance to the camera), it is difficult to set one common size for this image subset. Perhaps there is a better way of detecting not only the presence of a certain object in an image, but also its location?
+
+Semantic segmentation aims at solving this problem by classifying each pixel in an image - it takes a raw image as an input and outputs a vector with the label for each of the pixels in the original raw image. The idea behind is to not only distinguish the different objects within the image (segmentation) but also learn what they represent (semantic). For normal image classification the common approach is to use a CNN for important feature extraction and then several Fully Connected Layers as the head, which perform the classification itself. In semantic segmengation the approach is to not use fully-connected layers, but instead to use a Fully-Convolutional Network (FCN) to train the whole end-to-end process, from detecting features in the image, to classifying each of the pixels.
+A very common architecture for semantic segmentation
+### What is domain adaptation and why is it needed?
 
 
 ## Implementation
