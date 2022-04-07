@@ -34,7 +34,7 @@ In semantic segmengation the approach is to not use fully-connected layers as th
 
 As can be seen in the figure, through pooling (subsampling) the input size is reduced throughout the network - which is beneficial because it essentially allows a pixel in a deeper layer to have a larger receptive field, i.e. to "see" more pixels from the original image. However, our task is to classify each pixel in the image, hence we need to upsample, which is exactly what happens at the final "pixelwise prediction" layer. Now a pixel-wide prediction can be output at the last layer, which means that we can compare it to some ground truth and see how well the network performs. A commonly used loss function in this case is the *Cross-Entropy Loss*, which is the same as the one used for classical image classification tasks, only applied to each pair of pixels between output and ground truth. One issue is that the predictions might be too "coarse" due to the subsampling within the network and then upsampling to match the input image size. There are many different ways of dealing with this, for example by including skip layer connections which pass some shallow layers and fuse them with the coarse deep layers to obtain a better prediction. 
   
-### 2.3What is domain adaptation and why is it needed?
+### 2.3. What is domain adaptation and why is it needed?
 
 
 ## 3. Implementation
