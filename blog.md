@@ -14,7 +14,23 @@ The main contribution from the article is thus a method for semantic segmentatio
 The method combines two parts for dealing with adaption. A part that deals with global changes and a part that deals with category-specific changes. The global changes relate to a shift in the marginal distribution of the feature space – this is most obvious when the domains are very different such as real and simulated data. The category-specific changes relate to differences in category-specific features such as occurrence of objects. The framework consists of a source domain with labeled images and a target domain with unlabelled images. The loss function consists of three main parts: 
 * 1. A part that simply optimises the supervised segmentation in the supervised domain. The purpose is to ensure that the model does not diverge too much from the source solution and thus that the transfered information is valid. 
 * 2. A part that minimises the distance between the global distributions in the two domains. This is done by adversarial learning with an alternating minimization procedure. The first objective seek to finding the parameters that will minimise the distance between the source and target domain. The second objective will train a classifier to distinguish between source and target domain and hereby estimate a distance function. The result is then that the model learns the best possible classifier and use this information to learn the parameters that can minimise this difference. 
-* 3. A part for category-specific adaption by using statistics from the labeled source domain in the unlabeled target domain. 
+* 3. A part for category-specific adaption by using statistics from the labeled source domain in the unlabeled target domain. For each source image containing a class c is computed the percentage of pixels whose true label is class c. The purpose is that pixels in the target domain is assigned to classes within the expected range based on the source domain. This paper has the additional contribution that it uses the lower and top 10% as well as the average value for these contraints compared to prior work that often uses just a single threshold. In that way information from a supervised setting is transferred to an unsupervised setting. 
+
+#### Applications and Results
+
+The method is applied to three different types of domain adaption tasks, namely between cities, between seasons as well as between synthetic and real data. To study these shifts four different datasets are applied. Cityscapes is used as target domain for all three domain shifts and also the source domain for cities-->cities.  SYNTHIA is used as source domain both for the application of season->season and synthetic -> real. GTA5 is used as source domain for synthetic-->real. BDDS is used as both source and target domain for cities-->cities. All together this represents shifts of various challenge for the model. DOUBLE CHECK THAT I GOT THIS RIGHT. 
+
+The final results presented that we were to reproduce is the performance on adaption from synthetic to real data using GTA5 and SYNTHIA. It is clear that the proposed method outperforms the baseline model when it comes to identifying the vast majority of objects. In addition there was an ablation study to examine the effect of including the category-speficic part of the loss function. For GTA5 the category-specfic adaption offered a clear benefit but only a small improvement for SYNTHIA and cities-->cities. 
+
+INSERT TABLE IN THIS SECTION
+
+### 1.2 Plans for reproducibility project. NOT FINISHED
+Bases on our understanding of the paper, we identified several analyses of interest. 
+
+* Apply the method to different domain adaption tasks. The majority of the data that the article is based upon is related to cities, wether it being in different cities, in different seasons or synthetic vs. real. It could be interesting to experiment with alternative settings such as FIND EXAMPLES + DATASETS. What kind of challenge is this (large, medium, small?) 
+* Including ablation study with category-speicific adaption. The effect of the CA part would be interesting for further examination, as the magnitude of improvement seemed to vary across datasets. 
+* Changing constraints in CA? 
+* Learning curve for different number of data samples?
 
 #### Results
 The paper presented results with various adaptations, ranging from mild to more drastic differences between the two domains. For example, when comparing a city from the Cityscapes databse with another city this was labeled as a small shift, however shifting from a video game city to a real city was labeled as a large shift in domains. Below we have posted two tables containing results from the paper for the shifts aforementioned, the first one corresponds to the large shift while the other the small. Note how there are three rows per experiment, the first row is the benchmark while the bottom two rows are the results from the method in the paper that has been split in two for ablation purposes to see the effect of solely using global changes for the loss function and seeing how it behaves when both local and categorical changes are present in the loss function. The first table shows how the network behaved when being trained on videogame/synthetic scenery then tested with real cities, as one can see some objects were more adaptable than others such as buildings and roads while recognizing other objects showed no carry over (like trains).
@@ -78,6 +94,7 @@ The second available implementation of the paper was written in a combination of
 
 
 ### Our work:
+  
 #### Getting started:
 Since the PyTorch model was largely unfinished, our team decided to use the TensorFlow implementation. Unfortunately, that implementation required a compiler, as well as some outdated and deprecated packages. Furthermore, the dependencies list only contained the MacOS versions of packages - hence we had to find the corresponding version of each package for Windows/Linux. Much of our initial work was dedicated to ensuring that all packages were compatible, as the implementation also required TensorFlow 1.1 which then requires an older version of CUDA in order to run the training process on the GPU. In the end we were able to run the implementation, however only one member of our team had a native Linux installation which made parallel work on the existing code much more difficult.
 
