@@ -16,6 +16,20 @@ The method combines two parts for dealing with adaption. A part that deals with 
 * 2. A part that minimises the distance between the global distributions in the two domains. This is done by adversarial learning with an alternating minimization procedure. The first objective seek to finding the parameters that will minimise the distance between the source and target domain. The second objective will train a classifier to distinguish between source and target domain and hereby estimate a distance function. The result is then that the model learns the best possible classifier and use this information to learn the parameters that can minimise this difference. 
 * 3. A part for category-specific adaption by using statistics from the labeled source domain in the unlabeled target domain. For each source image containing a class c is computed the percentage of pixels whose true label is class c. The purpose is that pixels in the target domain is assigned to classes within the expected range based on the source domain. This paper has the additional contribution that it uses the lower and top 10% as well as the average value for these contraints compared to prior work that often uses just a single threshold. In that way information from a supervised setting is transferred to an unsupervised setting. 
 
+#### Applications and Results
+
+The method is applied to three different types of domain adaption tasks, namely between cities, between seasons as well as between synthetic and real data. To study these shifts four different datasets are applied. Cityscapes is used as target domain for all three domain shifts and also the source domain for cities-->cities.  SYNTHIA is used as source domain both for the application of season->season and synthetic -> real. GTA5 is used as source domain for synthetic-->real. BDDS is used as both source and target domain for cities-->cities. All together this represents shifts of various challenge for the model. DOUBLE CHECK THAT I GOT THIS RIGHT. 
+
+The final results presented that we were to 
+
+INSERT TABLE IN THIS SECTION
+
+### 1.2 Plans for reproducibility project. 
+Bases on our understanding of the paper, we identified several analyses of interest. 
+
+* Apply the method to different domain adaption tasks. The majority of the data that the article is based upon is related to cities, wether it being in different cities, in different cities or synthetic vs. real. It could be interesting to experiment with alternative settings such as FIND EXAMPLES + DATASETS. What kind of challenge is this (large, medium, small?) 
+* 
+
 ## 2. FCNs in the Wild: Pixel-level Adversarial and Constraint-based Adaptation
 
 ### 2.1. What is Semantic Segmentation?
@@ -61,6 +75,7 @@ The second available implementation of the paper was written in a combination of
 
 
 ### Our work:
+  
 #### Getting started:
 Since the PyTorch model was largely unfinished, our team decided to use the TensorFlow implementation. Unfortunately, that implementation required a compiler, as well as some outdated and deprecated packages. Furthermore, the dependencies list only contained the MacOS versions of packages - hence we had to find the corresponding version of each package for Windows/Linux. Much of our initial work was dedicated to ensuring that all packages were compatible, as the implementation also required TensorFlow 1.1 which then requires an older version of CUDA in order to run the training process on the GPU. In the end we were able to run the implementation, however only one member of our team had a native Linux installation which made parallel work on the existing code much more difficult.
 
