@@ -16,6 +16,23 @@ The method combines two parts for dealing with adaption. A part that deals with 
 * 2. A part that minimises the distance between the global distributions in the two domains. This is done by adversarial learning with an alternating minimization procedure. The first objective seek to finding the parameters that will minimise the distance between the source and target domain. The second objective will train a classifier to distinguish between source and target domain and hereby estimate a distance function. The result is then that the model learns the best possible classifier and use this information to learn the parameters that can minimise this difference. 
 * 3. A part for category-specific adaption by using statistics from the labeled source domain in the unlabeled target domain. 
 
+#### Results
+The paper presented results with various adaptations, ranging from mild to more drastic differences between the two domains. For example, when comparing a city from the Cityscapes databse with another city this was labeled as a small shift, however shifting from a video game city to a real city was labeled as a large shift in domains. Below we have posted two tables containing results from the paper for the shifts aforementioned, the first one corresponds to the large shift while the other the small. Note how there are three rows per experiment, the first row is the benchmark while the bottom two rows are the results from the method in the paper that has been split in two for ablation purposes to see the effect of solely using global changes for the loss function and seeing how it behaves when both local and categorical changes are present in the loss function. The first table shows how the network behaved when being trained on videogame/synthetic scenery then tested with real cities, as one can see some objects were more adaptable than others such as buildings and roads while recognizing other objects showed no carry over (like trains).
+<p>
+<img src="https://i.imgur.com/ZjODpjx.png" width="641" height="218" />
+  
+[Source](https://arxiv.org/pdf/1612.02649.pdf)
+  
+<p>
+
+The second table (shown below) corresponds to the small shift in domain. Note how, compared to the previous the table, the network shows high adaptability which is intuitive as the change is not as drastic. We present this table as when performing our own experiments we will use this for comparison given in our experiments we looked at adaptability between different cities. 
+<p>
+<img src="https://i.imgur.com/rWHatBT.png" width="639" height="109" />
+  
+[Source](https://arxiv.org/pdf/1612.02649.pdf)
+  
+<p>
+
 ## 2. FCNs in the Wild: Pixel-level Adversarial and Constraint-based Adaptation
 
 ### 2.1. What is Semantic Segmentation?
