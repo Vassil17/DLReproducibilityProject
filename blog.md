@@ -10,6 +10,8 @@ The motivation behind this paper is that fully convolutional models typically pe
 
 The main contribution from the article is thus a method for semantic segmentation for domain shifts. They introduce an unsupervised adversarial approach for pixel prediction for adapting to new domains. The suggested method indeed outperforms the baseline model on multiple large-scale data sets. 
 
+#### Datasets
+There were three datasets that were used in the paper for various domain adaptations: Cityscapes, SYNTHIA and GTA5. Starting with Cityscapes, which contained 5000 images from several cities which were used on a 59.5/30.5/10 train/validation/testing split. Secondly, the SYNTHIA dataset used contained 9000 synthetic city images which had Cityscape-compatible annotations. Lastly, GTA5 which contained 24,966 labeled images from the video game Gradn Theft Auto 5 and gathered a subset of these images whose labels were compatible with the Cityscapes. 
 #### Method
 The method combines two parts for dealing with adaption. A part that deals with global changes and a part that deals with category-specific changes. The global changes relate to a shift in the marginal distribution of the feature space – this is most obvious when the domains are very different such as real and simulated data. The category-specific changes relate to differences in category-specific features such as occurrence of objects. The framework consists of a source domain with labeled images and a target domain with unlabelled images. The loss function consists of three main parts: 
 * 1. A part that simply optimises the supervised segmentation in the supervised domain. The purpose is to ensure that the model does not diverge too much from the source solution and thus that the transfered information is valid. 
@@ -31,9 +33,13 @@ Bases on our understanding of the paper, we identified several analyses of inter
 * Including ablation study with category-speicific adaption. The effect of the CA part would be interesting for further examination, as the magnitude of improvement seemed to vary across datasets. 
 * Changing constraints in CA? 
 * Learning curve for different number of data samples?
+* Changing the weights for the terms in the loss function (for example give a weight of 0.8 to GA loss and 0.2 to CA on the loss function)
 
 #### Results
-The paper presented results with various adaptations, ranging from mild to more drastic differences between the two domains. For example, when comparing a city from the Cityscapes databse with another city this was labeled as a small shift, however shifting from a video game city to a real city was labeled as a large shift in domains. Below we have posted two tables containing results from the paper for the shifts aforementioned, the first one corresponds to the large shift while the other the small. Note how there are three rows per experiment, the first row is the benchmark while the bottom two rows are the results from the method in the paper that has been split in two for ablation purposes to see the effect of solely using global changes for the loss function and seeing how it behaves when both local and categorical changes are present in the loss function. The first table shows how the network behaved when being trained on videogame/synthetic scenery then tested with real cities, as one can see some objects were more adaptable than others such as buildings and roads while recognizing other objects showed no carry over (like trains).
+The paper presented results with various adaptations, ranging from mild to more drastic differences between the two domains. For example, when comparing a city from the Cityscapes databse with another city this was labeled as a small shift, however shifting from a video game city to a real city was labeled as a large shift in domains. Below we have posted two tables containing results from the paper for the shifts aforementioned, the first one corresponds to the large shift while the other the small. Note how there are three rows per experiment, the first row is the benchmark while the bottom two rows are the results from the method in the paper that has been split in two for ablation purposes to see the effect of solely using global changes for the loss function and seeing how it behaves when both local and categorical changes are present in the loss function. Table 1 shows how the network behaved when being trained on videogame/synthetic scenery then tested with real cities, as one can see some objects were more adaptable than others such as buildings and roads while recognizing other objects showed no carry over (like trains).
+
+<p style="text-align: center;">Table 1: Large domain shift, trained on videogame/syntethic cities tested on real cities</p>
+
 <p>
 <img src="https://i.imgur.com/ZjODpjx.png" width="641" height="218" />
   
@@ -41,7 +47,9 @@ The paper presented results with various adaptations, ranging from mild to more 
   
 <p>
 
-The second table (shown below) corresponds to the small shift in domain. Note how, compared to the previous the table, the network shows high adaptability which is intuitive as the change is not as drastic. We present this table as when performing our own experiments we will use this for comparison given in our experiments we looked at adaptability between different cities. 
+Table 2 (shown below) corresponds to the small shift in domain. Note how, compared to the previous the table, the network shows high adaptability which is intuitive as the change is not as drastic. We present this table as when performing our own experiments we will use this for comparison given in our experiments we looked at adaptability between different cities. 
+
+<p style="text-align: center;">Table 2: Small domain shift, trained on real cities tested on different real cities</p>
 <p>
 <img src="https://i.imgur.com/rWHatBT.png" width="639" height="109" />
   
@@ -97,6 +105,16 @@ The second available implementation of the paper was written in a combination of
   
 #### Getting started:
 Since the PyTorch model was largely unfinished, our team decided to use the TensorFlow implementation. Unfortunately, that implementation required a compiler, as well as some outdated and deprecated packages. Furthermore, the dependencies list only contained the MacOS versions of packages - hence we had to find the corresponding version of each package for Windows/Linux. Much of our initial work was dedicated to ensuring that all packages were compatible, as the implementation also required TensorFlow 1.1 which then requires an older version of CUDA in order to run the training process on the GPU. In the end we were able to run the implementation, however only one member of our team had a native Linux installation which made parallel work on the existing code much more difficult.
+
+#### Datasets
+The tensorflow implementation made use of the datasets from the paper (Cityscapes, SYNTHIA, GTA5) and additionally used a database "NMD Database" they had developed which was made of images from Taipei, Tokyo, Roma & Rio. Table 3 shows some more detail about the NMD Dataset.
+<p style="text-align: center;">Table 3: NMD Dataset features</p>
+<p>
+<img src="https://i.imgur.com/ksPBiZ0.png" width="641" height="118" />
+  
+[Source](https://yihsinchen.github.io/segmentation_adaptation/#Dataset)
+  
+<p>
 
 #### Data Processing:
 After we set up the model, we wanted to evaluate the performance of the available trained model on some of the test images. In order to do that we had to process all the test images since they had to be in a 512x256 image size. We created an image processing function which would re-scale the images to match the input of the neural network, while also maintaining some of the label information that was built into the images themselves. A benefit of this approach was that re-scaling the images also drastically reduced the size of the training and testing datasets - from tens of GBs to only a few GB.
