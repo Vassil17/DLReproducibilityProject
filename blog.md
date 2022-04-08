@@ -20,15 +20,17 @@ The method combines two parts for dealing with adaption. A part that deals with 
 
 The method is applied to three different types of domain adaption tasks, namely between cities, between seasons as well as between synthetic and real data. To study these shifts four different datasets are applied. Cityscapes is used as target domain for all three domain shifts and also the source domain for cities-->cities.  SYNTHIA is used as source domain both for the application of season->season and synthetic -> real. GTA5 is used as source domain for synthetic-->real. BDDS is used as both source and target domain for cities-->cities. All together this represents shifts of various challenge for the model. DOUBLE CHECK THAT I GOT THIS RIGHT. 
 
-The final results presented that we were to 
+The final results presented that we were to reproduce is the performance on adaption from synthetic to real data using GTA5 and SYNTHIA. It is clear that the proposed method outperforms the baseline model when it comes to identifying the vast majority of objects. In addition there was an ablation study to examine the effect of including the category-speficic part of the loss function. For GTA5 the category-specfic adaption offered a clear benefit but only a small improvement for SYNTHIA and cities-->cities. 
 
 INSERT TABLE IN THIS SECTION
 
-### 1.2 Plans for reproducibility project. 
+### 1.2 Plans for reproducibility project. NOT FINISHED
 Bases on our understanding of the paper, we identified several analyses of interest. 
 
-* Apply the method to different domain adaption tasks. The majority of the data that the article is based upon is related to cities, wether it being in different cities, in different cities or synthetic vs. real. It could be interesting to experiment with alternative settings such as FIND EXAMPLES + DATASETS. What kind of challenge is this (large, medium, small?) 
-* 
+* Apply the method to different domain adaption tasks. The majority of the data that the article is based upon is related to cities, wether it being in different cities, in different seasons or synthetic vs. real. It could be interesting to experiment with alternative settings such as FIND EXAMPLES + DATASETS. What kind of challenge is this (large, medium, small?) 
+* Including ablation study with category-speicific adaption. The effect of the CA part would be interesting for further examination, as the magnitude of improvement seemed to vary across datasets. 
+* Changing constraints in CA? 
+* Learning curve for different number of data samples?
 
 ## 2. FCNs in the Wild: Pixel-level Adversarial and Constraint-based Adaptation
 
