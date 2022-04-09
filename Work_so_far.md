@@ -41,7 +41,10 @@ To extract all files from subfolders into one common folder:
 ```
 >> find ~/Downloads/ -type f -print0 | xargs -0 mv -t ~/Videos
 ```
-
+To rename all files (all labels need to end in _eval.png:
+```
+>> for i in *.png; do mv "$i" "${i%.*}_eval.png"; done
+```
 
 Notes:
 
