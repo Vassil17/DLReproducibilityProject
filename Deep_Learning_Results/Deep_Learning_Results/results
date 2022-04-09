@@ -1,0 +1,142 @@
+RESULTS RIO:
+
+classes          IoU      nIoU
+--------------------------------
+road          : 0.739      nan
+sidewalk      : 0.461      nan
+building      : 0.814      nan
+traffic light : 0.030      nan
+traffic sign  : 0.054      nan
+vegetation    : 0.759      nan
+sky           : 0.822      nan
+person        : 0.414      nan
+rider         : 0.073      nan
+car           : 0.683      nan
+bus           : 0.476      nan
+motorcycle    : 0.149      nan
+bicycle       : 0.025      nan
+--------------------------------
+Score Average : 0.423      nan
+--------------------------------
+
+
+categories       IoU      nIoU
+--------------------------------
+flat          : 0.815      nan
+nature        : 0.759      nan
+object        : 0.053      nan
+sky           : 0.822      nan
+construction  : 0.814      nan
+human         : 0.412      nan
+vehicle       : 0.707      nan
+--------------------------------
+Score Average : 0.626      nan
+--------------------------------
+
+RESULTS ROME:
+
+classes          IoU      nIoU
+--------------------------------
+road          : 0.798      nan
+sidewalk      : 0.297      nan
+building      : 0.853      nan
+traffic light : 0.007      nan
+traffic sign  : 0.185      nan
+vegetation    : 0.819      nan
+sky           : 0.859      nan
+person        : 0.296      nan
+rider         : 0.108      nan
+car           : 0.719      nan
+bus           : 0.384      nan
+motorcycle    : 0.114      nan
+bicycle       : 0.007      nan
+--------------------------------
+Score Average : 0.419      nan
+--------------------------------
+
+
+categories       IoU      nIoU
+--------------------------------
+flat          : 0.811      nan
+nature        : 0.819      nan
+object        : 0.174      nan
+sky           : 0.859      nan
+construction  : 0.853      nan
+human         : 0.285      nan
+vehicle       : 0.739      nan
+--------------------------------
+Score Average : 0.649      nan
+--------------------------------
+
+
+TAIPEI RESULTS:
+
+classes          IoU      nIoU
+--------------------------------
+road          : 0.801      nan
+sidewalk      : 0.299      nan
+building      : 0.797      nan
+traffic light : 0.086      nan
+traffic sign  : 0.063      nan
+vegetation    : 0.677      nan
+sky           : 0.800      nan
+person        : 0.175      nan
+rider         : 0.101      nan
+car           : 0.609      nan
+bus           : 0.353      nan
+motorcycle    : 0.208      nan
+bicycle       : 0.063      nan
+--------------------------------
+Score Average : 0.387      nan
+--------------------------------
+
+
+categories       IoU      nIoU
+--------------------------------
+flat          : 0.811      nan
+nature        : 0.677      nan
+object        : 0.076      nan
+sky           : 0.800      nan
+construction  : 0.797      nan
+human         : 0.195      nan
+vehicle       : 0.659      nan
+--------------------------------
+Score Average : 0.573      nan
+--------------------------------
+
+
+
+TOKYO RESULTS:
+
+classes          IoU      nIoU
+--------------------------------
+road          : 0.840      nan
+sidewalk      : 0.393      nan
+building      : 0.751      nan
+traffic light : 0.087      nan
+traffic sign  : 0.098      nan
+vegetation    : 0.786      nan
+sky           : 0.750      nan
+person        : 0.444      nan
+rider         : 0.165      nan
+car           : 0.639      nan
+bus           : 0.216      nan
+motorcycle    : 0.031      nan
+bicycle       : 0.359      nan
+--------------------------------
+Score Average : 0.428      nan
+--------------------------------
+
+
+categories       IoU      nIoU
+--------------------------------
+flat          : 0.856      nan
+nature        : 0.786      nan
+object        : 0.115      nan
+sky           : 0.750      nan
+construction  : 0.751      nan
+human         : 0.413      nan
+vehicle       : 0.720      nan
+--------------------------------
+Score Average : 0.627      nan
+--------------------------------
