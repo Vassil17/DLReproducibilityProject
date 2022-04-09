@@ -120,7 +120,32 @@ The tensorflow implementation made use of the datasets from the paper (Cityscape
 After we set up the model, we wanted to evaluate the performance of the available trained model on some of the test images. In order to do that we had to process all the test images since they had to be in a 512x256 image size. We created an image processing function which would re-scale the images to match the input of the neural network, while also maintaining some of the label information that was built into the images themselves. A benefit of this approach was that re-scaling the images also drastically reduced the size of the training and testing datasets - from tens of GBs to only a few GB.
   
 #### Training the model:
-We adapted the provided scripts in order to use the specific datasets used in the original paper - namely the labelled SYNTHIA for training and the unlabelled Cityscapes for the domain adaptation. Our first attempt was to train the network on a Intel Core i7 CPU. The average batch processing time was around 400 seconds, which showed that training it on the CPU would be intractable. We then re-configured the network to use the laptop's RTX 2060 6GB graphics card. Unfortunately the GPU would quickly run out of memory due to the size of the model itself - lowering the batch size and training on only a subset of the training set did reduce the GPU usage but it was still not able to fit the whole model in memory. Since we could not possibly train the model on our hardware, we decided to instead evaluate the performance of the pre-trained available model on different datasets, without performing extra domain adaptation. 
+We adapted the provided scripts in order to use the specific datasets used in the original paper - namely the labelled SYNTHIA for training and the unlabelled Cityscapes for the domain adaptation. Our first attempt was to train the network on a Intel Core i7 CPU. The average training time for a single batch was around 400 seconds, which showed that training it on a CPU would be intractable. We then re-configured the network to use the laptop's RTX 2060 6GB graphics card. Unfortunately the GPU would quickly run out of memory due to the size of the model itself - lowering the batch size and training on only a subset of the training set did reduce the GPU usage but it was still not able to fit the whole model in memory. Since we could not possibly train the model on our hardware, we decided to instead evaluate the performance of the pre-trained available model on different datasets, without performing extra domain adaptation. 
+  
+#### Results:
+Since we were not able to train the model, we decided to instead test how well it generalises to cities that it has not seen before. While the idea of the model is to transfer the learning to a new domain using by training on some unlabelled data from the target domain, it can still be worthwile to see if a model trained on source A and adapted to target B can perform well on a new data set C. While the best performance will be certainly obtained by first adapting the network to the new city, this process requires a complete re-training of the model, which as we saw is computationally expensive, both in terms of GPU memory requirements, and also possibly in terms of training time. Unfortunately the authors did not disclose the hardware that they performed the training on, as well as the training time that it took, so we have to base our assumptions on the observations from trying to train the model on our hardware. 
+
+We tested the Cityscapes-to-Taipei model on three other cities from the NMD dataset - Tokyo, Rio and Rome. All four cities are quite different from each other, both geographically and architecturally, which could show some interesting results regarding the generalisation capabilities of the model. Furthermore, we tested the performance on some of the data from the Berkeley dataset (that the original paper adapted to), however, due to differences in the dataset labelling format we were only able to obtain qualitative results (in the form of images) and no IoU data.
+  
+  
+INSERT TABLE WITH RESULTS
+
+  
+First let's qualitatively analyse some of the images from Taipei, the city that the model was adapted to:
+  
+![image](https://user-images.githubusercontent.com/69580104/162591383-6f0e5e52-6a5c-4f4b-8088-9f3869358203.png)
+![image](https://user-images.githubusercontent.com/69580104/162591389-e399d5b4-1601-4740-a8d4-540f39a24b96.png)
+![image](https://user-images.githubusercontent.com/69580104/162591395-ca91f2ca-b543-4a18-bdb4-0a4f1321487b.png)
+
+In general the model does not perform very well, even on the dataset from the city that it was adapted to.   
+  
+Rome:
+  
+![image](https://user-images.githubusercontent.com/69580104/162591189-a3e3d651-c7ba-47ad-9f2e-6e73a3821837.png)
+![image](https://user-images.githubusercontent.com/69580104/162591213-1d890297-7c2e-416c-9a93-c82b9c4cd45e.png)
+![image](https://user-images.githubusercontent.com/69580104/162591304-cb77b60b-62f6-4e6e-878d-5b2cf3b3a8bc.png)
+  
+It seems that the model is quite good at segmenting cars and folliage, however, that was a noticeable lack of pedestrians in the test images for this dataset. The segmentation of pedestrians in the few images that do contain them seems to be quite coarse. 
   
 ## 4. Perspective to Edward Raff 2019 'A Step Toward Quantifying Independently Reproducible Machine Learning Research'. 
 Reproducibility was not succesful in this case and in the above we have evaluated our own challenges in this process. We will end the blog with some perspectives to the seminar paper from Week 2; 'A Step Toward Quantifying Independently Reproducible Machine Learning Research' by Edward Raff, and evaluate our paper 'FCNs in the Wild' based on a selection of their findings. 
