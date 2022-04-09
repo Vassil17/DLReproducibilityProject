@@ -134,18 +134,29 @@ INSERT TABLE WITH RESULTS
 First let's qualitatively analyse some of the images from Taipei, the city that the model was adapted to:
   
 ![image](https://user-images.githubusercontent.com/69580104/162591383-6f0e5e52-6a5c-4f4b-8088-9f3869358203.png)
+In general the model does not perform very well, even on the dataset from the city that it was adapted to. In the first image some of the street signs are segmented very well, while others are not detected at all. On the other hand, motorbikes and cars are qualitatively segmented well in most cases.
 ![image](https://user-images.githubusercontent.com/69580104/162591389-e399d5b4-1601-4740-a8d4-540f39a24b96.png)
+In this image much better qualitative results can be observed - the pedestrians' bodies are well segmented, as well as the folliage, street sign and motorbikes. There are also much fewer noisy detections than in the first image.
 ![image](https://user-images.githubusercontent.com/69580104/162591395-ca91f2ca-b543-4a18-bdb4-0a4f1321487b.png)
+The final that we're showing also shows good detection of vehicles, but it the model seems to have difficulty differentiating between pedestrian and motorcyclist. Furthermore some noise can again be seen around the image - mainly parts of the building that have been segmented as folliage.
+  
 
-In general the model does not perform very well, even on the dataset from the city that it was adapted to.   
-  
-Rome:
-  
+Now we'll look at a few images from Rome, which is another one of the test cities in the NMD dataset.  
 ![image](https://user-images.githubusercontent.com/69580104/162591189-a3e3d651-c7ba-47ad-9f2e-6e73a3821837.png)
 ![image](https://user-images.githubusercontent.com/69580104/162591213-1d890297-7c2e-416c-9a93-c82b9c4cd45e.png)
 ![image](https://user-images.githubusercontent.com/69580104/162591304-cb77b60b-62f6-4e6e-878d-5b2cf3b3a8bc.png)
   
-It seems that the model is quite good at segmenting cars and folliage, however, that was a noticeable lack of pedestrians in the test images for this dataset. The segmentation of pedestrians in the few images that do contain them seems to be quite coarse. 
+It seems that the model is quite good at segmenting cars and folliage, however, that was a noticeable lack of pedestrians in the test images for this dataset. The segmentation of pedestrians in the few images that do contain them seems to be quite coarse and also sometimes misclassifies pedestrian and motorcycle.
+ 
+Rio:
+  
+![image](https://user-images.githubusercontent.com/69580104/162591742-3077228b-3cc4-4d1b-9e61-44a9431fe750.png)
+![image](https://user-images.githubusercontent.com/69580104/162591751-b26fed72-4f85-4f53-9f27-dd4445caad37.png)
+![image](https://user-images.githubusercontent.com/69580104/162591762-27e136f1-af8d-487f-8f48-f1240ef205dc.png)
+  
+Tokyo:
+  
+Berkeley: 
   
 ## 4. Perspective to Edward Raff 2019 'A Step Toward Quantifying Independently Reproducible Machine Learning Research'. 
 Reproducibility was not succesful in this case and in the above we have evaluated our own challenges in this process. We will end the blog with some perspectives to the seminar paper from Week 2; 'A Step Toward Quantifying Independently Reproducible Machine Learning Research' by Edward Raff, and evaluate our paper 'FCNs in the Wild' based on a selection of their findings. 
