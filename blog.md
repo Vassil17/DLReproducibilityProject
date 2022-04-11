@@ -36,6 +36,25 @@ As can be seen in the figure, through pooling (subsampling) the input size is re
   
 ### 2.3. What is domain adaptation and why is it needed?
 
+First of all, let's compare these two images:
+  
+<p>
+<img src="https://user-images.githubusercontent.com/69580104/162791518-5af5c7f8-82d8-48ce-bc03-ff95ca9c9e07.png" width=50% />
+  
+[Source: TripSavvy]
+  
+<p>
+<p> <img src="https://user-images.githubusercontent.com/69580104/162792068-e62c59a2-3b7a-4f3f-8b2a-24245874a049.png" width=50%/>
+  
+[Source: NYCgo.com]
+<p
+
+For a human it is relatively trivial to realise that they are both photos of a square, containing a lot of signs, people, and some vehicles. There are stark differences between the way the images look in terms of colour and intensity, but a human can attribute all that to the fact that the top image is obviously taken on a snowy winter day. Unfortunately, neural networks often cannot achieve this reasoning - it is common knowledge that models will cheat or find a shortcut, if one is available. This, in turn, results in such models not being very good at generalising to new environments, especially ones that look so different from what they are used to - even if they semantically contain the same information.
+   
+ Hopefully this little example has illustrated how vastly different images of semantically the same objects can look. It is not just lightning and weather conditions that can affect the way an instance of a class appears - in winter people dress very differently from summer, yet they are still people that should be recognised as such. Then this begs the question -How can we then teach a neural network to associate such instances with the ones it knows? Well, this is precisely what domain adaptation aims to solve.
+   
+More often than not it is not the lack of data that is the problem, but the lack of labels - as the process of annotation is both time-consuming and expensive, especially when one is dealing with a more complex task like pixel-wise segmentation and classification. As such, if we want to deploy our semantic segmentation network into a new city, we will often know what this city looks like and already have images of it - and if not, the collection of such raw data is not particularly difficult. One of the ideas of domain adaptation is exploiting exactly this - how can we teach our network to adapt its acquired knowledge to this new environment, without requiring the use of expensive labelled data? Well this is what the paper *FCNs in the Wild* is about, and we will introduce that in the next section.
+   
 ### 2.4 The paper
 
 #### Background and main contribution
