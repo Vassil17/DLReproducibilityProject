@@ -72,24 +72,10 @@ The method combines two parts for dealing with adaption. A part that deals with 
 
 #### Applications and Results
 
-The method is applied to three different types of domain adaption tasks, namely between cities, between seasons as well as between synthetic and real data. To study these shifts four different datasets are applied. Cityscapes is used as target domain for all three domain shifts and also the source domain for cities-->cities.  SYNTHIA is used as source domain both for the application of season->season and synthetic -> real. GTA5 is used as source domain for synthetic-->real. BDDS is used as both source and target domain for cities-->cities. All together this represents shifts of various challenge for the model. DOUBLE CHECK THAT I GOT THIS RIGHT. 
+The paper presented results with various adaptations, ranging from mild to more drastic differences between the two domains. The method was applied to three different types of domain adaption tasks, namely between cities (small shift), between seasons as well as between synthetic and real data (large shift). Cityscapes is used as target domain for all three domain shifts and also the source domain for cities-->cities.  SYNTHIA is used as source domain both for the application of season->season and synthetic -> real. GTA5 is used as source domain for synthetic-->real. BDDS is used as both source and target domain for cities-->cities. All together this represents shifts of various challenge for the model. 
 
-The final results presented that we were to reproduce is the performance on adaption from synthetic to real data using GTA5 and SYNTHIA. It is clear that the proposed method outperforms the baseline model when it comes to identifying the vast majority of objects. In addition there was an ablation study to examine the effect of including the category-speficic part of the loss function. For GTA5 the category-specfic adaption offered a clear benefit but only a small improvement for SYNTHIA and cities-->cities. 
-
-INSERT TABLE IN THIS SECTION
-
-## 3. Plans for reproducibility project. NOT FINISHED
-Bases on our understanding of the paper, we identified several analyses of interest. 
-
-* Apply the method to different domain adaption tasks. The majority of the data that the article is based upon is related to cities, wether it being in different cities, in different seasons or synthetic vs. real. It could be interesting to experiment with alternative settings such as FIND EXAMPLES + DATASETS. What kind of challenge is this (large, medium, small?) 
-* Including ablation study with category-speicific adaption. The effect of the CA part would be interesting for further examination, as the magnitude of improvement seemed to vary across datasets. 
-* Changing constraints in CA? 
-* Learning curve for different number of data samples?
-* Changing the weights for the terms in the loss function (for example give a weight of 0.8 to GA loss and 0.2 to CA on the loss function)
-
-### Results
-The paper presented results with various adaptations, ranging from mild to more drastic differences between the two domains. For example, when comparing a city from the Cityscapes databse with another city this was labeled as a small shift, however shifting from a video game city to a real city was labeled as a large shift in domains. Below we have posted two tables containing results from the paper for the shifts aforementioned, the first one corresponds to the large shift while the other the small. Note how there are three rows per experiment, the first row is the benchmark while the bottom two rows are the results from the method in the paper that has been split in two for ablation purposes to see the effect of solely using global changes for the loss function and seeing how it behaves when both local and categorical changes are present in the loss function. Table 1 shows how the network behaved when being trained on videogame/synthetic scenery then tested with real cities, as one can see some objects were more adaptable than others such as buildings and roads while recognizing other objects showed no carry over (like trains).
-
+Below we have posted two tables containing results from the paper for the shifts aforementioned, the first one corresponds to the large shift, using GTA5 and SYNTHIA, while the second corresponds to the small shift, only using Cityscapes. Note how there are three rows per experiment, the first row is the benchmark while the bottom two rows are the results from the method in the paper that has been split in two for ablation purposes to examine the effect of including the category-speficic part of the loss function vs. only including lobal changes in the loss function. 
+ 
 <p style="text-align: center;">Table 1: Large domain shift, trained on videogame/syntethic cities tested on real cities</p>
 
 <p>
@@ -98,9 +84,9 @@ The paper presented results with various adaptations, ranging from mild to more 
 [Source](https://arxiv.org/pdf/1612.02649.pdf)
   
 <p>
-
-Table 2 (shown below) corresponds to the small shift in domain. Note how, compared to the previous the table, the network shows high adaptability which is intuitive as the change is not as drastic. We present this table as when performing our own experiments we will use this for comparison given in our experiments we looked at adaptability between different cities. 
-
+  
+Table 1 shows how the network behaved when being trained on videogame/synthetic scenery then tested with real cities, as one can see some objects were more adaptable than others such as buildings and roads while recognizing other objects showed no carry over (like trains). It is clear that the proposed method outperforms the baseline model when it comes to identifying the vast majority of objects. For GTA5 the category-specfic adaption offered a clear benefit but only a small improvement for SYNTHIA. 
+  
 <p style="text-align: center;">Table 2: Small domain shift, trained on real cities tested on different real cities</p>
 <p>
 <img src="https://i.imgur.com/rWHatBT.png" width="639" height="109" />
@@ -109,7 +95,19 @@ Table 2 (shown below) corresponds to the small shift in domain. Note how, compar
   
 <p>
   
-  
+Table 2 (shown above) corresponds to the small shift in domain. Note how, compared to the previous the table, the network shows high adaptability which is intuitive as the change is not as drastic. We present this table as when performing our own experiments we will use this for comparison given in our experiments we looked at adaptability between different cities. 
+
+## 3. Plans for reproducibility project. NOT FINISHED
+The results presented above is what we were to reproduce, namely the performance on adaption from synthetic to real data using GTA5 and SYNTHIA.
+Bases on our understanding of the paper, we identified several analyses of interest. 
+
+* Apply the method to different domain adaption tasks. The majority of the data that the article is based upon is related to cities, wether it being in different cities, in different seasons or synthetic vs. real. It could be interesting to experiment with alternative settings such as FIND EXAMPLES + DATASETS. What kind of challenge is this (large, medium, small?) 
+* Including ablation study with category-speicific adaption. The effect of the CA part would be interesting for further examination, as the magnitude of improvement seemed to vary across datasets. 
+* Changing constraints in CA? 
+* Learning curve for different number of data samples?
+* Changing the weights for the terms in the loss function (for example give a weight of 0.8 to GA loss and 0.2 to CA on the loss function)
+
+ 
 ## 3. Implementation
 There were two implementations available for this paper: one in PyTorch (link) and one in TensorFlow (link).
 
