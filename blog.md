@@ -198,7 +198,12 @@ Rio:
   
 Tokyo:
   
+  
 Berkeley: 
   
+ ![7dc08598-f42e2015](https://user-images.githubusercontent.com/51253916/162824355-6845dd9f-bc40-48eb-a25f-628603b78982.png)
+ ![7d15b18b-1e0d6e3f](https://user-images.githubusercontent.com/51253916/162824405-c4b200cb-dfc6-404f-8b07-e187d49f5d10.png)
+![7daa6479-67988f3f](https://user-images.githubusercontent.com/51253916/162824543-bbae2c4c-3f2e-4954-b7c6-a90ffd2b2c5f.png)
+
 ## 4. Perspective to Edward Raff 2019 'A Step Toward Quantifying Independently Reproducible Machine Learning Research'. 
 Reproducibility was not succesful in this case and in the above we have evaluated our own challenges in this process. We will end the blog with some perspectives to the seminar paper from Week 2; 'A Step Toward Quantifying Independently Reproducible Machine Learning Research' by Edward Raff, and evaluate our paper 'FCNs in the Wild' based on a selection of their findings. 
