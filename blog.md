@@ -63,18 +63,28 @@ The motivation behind this paper is that fully convolutional models typically pe
 The main contribution from the article is thus a method for semantic segmentation for domain shifts. They introduce an unsupervised adversarial approach for pixel prediction for adapting to new domains. The suggested method indeed outperforms the baseline model on multiple large-scale data sets. 
 
 #### Datasets
-There were three datasets that were used in the paper for various domain adaptations: Cityscapes, SYNTHIA and GTA5. Starting with Cityscapes, which contained 5000 images from several cities which were used on a 59.5/30.5/10 train/validation/testing split. Secondly, the SYNTHIA dataset used contained 9000 synthetic city images which had Cityscape-compatible annotations. Lastly, GTA5 which contained 24,966 labeled images from the video game Gradn Theft Auto 5 and gathered a subset of these images whose labels were compatible with the Cityscapes. 
+There were three datasets that were used in the paper for various domain adaptations: Cityscapes, SYNTHIA and GTA5. Starting with Cityscapes, which contained 5000 images from several cities which were used on a 59.5/30.5/10 train/validation/testing split. Secondly, the SYNTHIA dataset used contained 9000 synthetic city images which had Cityscape-compatible annotations. Lastly, GTA5 which contained 24,966 labeled images from the video game Grand Theft Auto 5 and gathered a subset of these images whose labels were compatible with the Cityscapes. 
+   
 #### Method
+
+   **Baseline model**
+ The paper uses a dilated fully convolutional network VGGNet with 16 layers as the baseline. Dilated convolution means that the size of kernel is expanded by inserting empty spaces so that some pixels are skipped when performin the convolution operation. This way more of the receptive field is covered without the need for learning more parameters. After the last convolutional layers they make use of bilinear up sampling to produce segmentation in same resolution as the input. 
+   
+**Domain adaption**   
 The method combines two parts for dealing with adaption. A part that deals with global changes and a part that deals with category-specific changes. The global changes relate to a shift in the marginal distribution of the feature space – this is most obvious when the domains are very different such as real and simulated data. The category-specific changes relate to differences in category-specific features such as occurrence of objects. The framework consists of a source domain with labeled images and a target domain with unlabelled images. The loss function consists of three main parts: 
    
    ![image](https://user-images.githubusercontent.com/101123359/162801773-62e38175-9bed-4a28-950e-9c84b14e85eb.png)
    
-* 1. $$L_seg$$ simply optimises the supervised segmentation in the supervised domain. The purpose is to ensure that the model does not diverge too much from the source solution and thus that the transfered information is valid. 
-* 2. A part that minimises the distance between the global distributions in the two domains. This is done by adversarial learning with an alternating minimization procedure. The first objective seek to finding the parameters that will minimise the distance between the source and target domain. The second objective will train a classifier to distinguish between source and target domain and hereby estimate a distance function. The result is then that the model learns the best possible classifier and use this information to learn the parameters that can minimise this difference. 
-* 3. A part for category-specific adaption by using statistics from the labeled source domain in the unlabeled target domain. For each source image containing a class c is computed the percentage of pixels whose true label is class c. The purpose is that pixels in the target domain is assigned to classes within the expected range based on the source domain. This paper has the additional contribution that it uses the lower and top 10% as well as the average value for these contraints compared to prior work that often uses just a single threshold. In that way information from a supervised setting is transferred to an unsupervised setting. 
+* 1. _Lseg_ simply optimises the supervised segmentation in the supervised domain, thus mapping the source images _Is_ to the source labels _Ls_ The purpose is to ensure that the model does not diverge too much from the source solution and that the transfered information is actually fitting. 
+* 2. _Lda_ minimises the distance between the global distributions in the two domains. This is done by adversarial learning with an alternating minimization procedure as shown below: 
+   
+   ![image](https://user-images.githubusercontent.com/101123359/162803632-bc050220-12dc-47b9-bb83-0c06f92e77da.png)
+
+The first objective seek to finding the parameters that will minimise the distance between the source and target domain. The second objective will train a classifier to distinguish between source and target domain and hereby estimate a distance function. The result is then that the model learns the best possible classifier and use this information to learn the parameters that can minimise this difference. 
+   
+* 3. _Lmi_ is the category-specific adaption using images from the target domain _It_ and label statistics transferred from the source domain. For each source image containing a class c the percentage of pixels whose true label is class c is computed. The purpose is that pixels in the target domain is assigned to classes within the expected range based on the source domain. This paper has the additional contribution that it uses the lower and top 10% as well as the average value for these contraints compared to prior work that often uses just a single threshold. For the predictions it is also computed the percentage of pixels that are assigned to each class, and a label is assigned if the model has predicted at least 10% of what is expected for that class. In that way information from a supervised setting is transferred to an unsupervised setting. 
 
 #### Applications and Results
-
 The paper presented results with various adaptations, ranging from mild to more drastic differences between the two domains. The method was applied to three different types of domain adaption tasks, namely between cities (small shift), between seasons as well as between synthetic and real data (large shift). Cityscapes is used as target domain for all three domain shifts and also the source domain for cities-->cities.  SYNTHIA is used as source domain both for the application of season->season and synthetic -> real. GTA5 is used as source domain for synthetic-->real. BDDS is used as both source and target domain for cities-->cities. All together this represents shifts of various challenge for the model. 
 
 Below we have posted two tables containing results from the paper for the shifts aforementioned, the first one corresponds to the large shift, using GTA5 and SYNTHIA, while the second corresponds to the small shift, only using Cityscapes. Note how there are three rows per experiment, the first row is the benchmark while the bottom two rows are the results from the method in the paper that has been split in two for ablation purposes to examine the effect of including the category-speficic part of the loss function vs. only including lobal changes in the loss function. 
@@ -100,6 +110,12 @@ Table 1 shows how the network behaved when being trained on videogame/synthetic 
   
 Table 2 (shown above) corresponds to the small shift in domain. Note how, compared to the previous the table, the network shows high adaptability which is intuitive as the change is not as drastic. We present this table as when performing our own experiments we will use this for comparison given in our experiments we looked at adaptability between different cities. 
 
+The image below shows an example of a medium domain shift across seasons. There are three seasons available, Summer, Fall and Winter allowing for 6 shifts. For 12 out of 13 objects the proposed method yields better results than the VGGNet base model. The image shows a shift from Fall to Winter, and it is noted how the roads are made white after the adaption to simulate snow, whereas the cars have same appearance as in the fall. 
+  
+  ![image](https://user-images.githubusercontent.com/101123359/162815443-85a9f5fb-5fa4-4e6f-8ffd-0b4d182b0938.png)
+
+  
+  
 ## 3. Plans for reproducibility project. NOT FINISHED
 The results presented above is what we were to reproduce, namely the performance on adaption from synthetic to real data using GTA5 and SYNTHIA.
 Bases on our understanding of the paper, we identified several analyses of interest. 
