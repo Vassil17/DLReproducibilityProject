@@ -195,6 +195,10 @@ Rio:
   
 Tokyo:
   
+ ![pano_00022_2_0](https://user-images.githubusercontent.com/51253916/163423804-1ee00aa4-ee15-41c4-b0ca-85184696192c.png)
+ ![pano_00320_0_180](https://user-images.githubusercontent.com/51253916/163423834-4ffc8e2c-97f2-40d1-94ff-90a36c69ecd1.png)
+![pano_01364_2_0](https://user-images.githubusercontent.com/51253916/163423905-fd741aa8-c9a3-4ec5-8c41-11a95bb27b69.png)
+
   
 Berkeley: 
   
@@ -210,3 +214,5 @@ Reproducibility was not succesful in this case and in the above we have evaluate
 Ane Cathrine: 
   * Work on implementation: Attempt on PyTorch code, attempt on running tensorflow through Colab, Cmake gui, linux compiler cygwin64, Ubuntu terminal environment with Windows Subsystem for Linux. 
   * Work on blog post: Section 2.4, Section 3, Section 5. 
+Joseph Krueger:
+  * 
