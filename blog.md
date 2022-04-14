@@ -1,6 +1,6 @@
 # FCNs in the Wild: Reproducibility Project for Deep Learning
 
-Joseph Krueger, Ane Cathrine Merrild, Gabriel Alayon Blanco, Vassil Atanassov (5501709)
+Joseph Krueger, Ane Cathrine Merrild (5375231) , Gabriel Alayon Blanco, Vassil Atanassov (5501709)
 
 ## 1. Introduction:
 In this blog post we will first introduce and go through the main concepts behind pixel-level image segmentation and domain adaptation. Then we will introduce the paper that we were tasked with reproducing, namely FCNs in the Wild: Pixel-level Adversarial and Constraint-based Adaptation. Finally, we will then explain the existing code implementations (one in PyTorch and one in TensorFlow), our own work and the results we obtained.
@@ -134,7 +134,7 @@ Bases on our understanding of the paper, we identified several analyses of inter
   
 * Closer examination of the effect of category-speicific adaption (CA). The magnitude of improvement seemed to vary across datasets when looking at the results table, and further studies about the actual gain of including CA would have been interesting, for example by using different sample sizes or data augmentation of the available data.  
 
-* Lastly, the model is trained and evaluated on large amount of data, motivating an analysis of the behaviour of the learning curve ie. the gain in performance when including more samples.
+* Lastly, the model is trained and evaluated on large amount of data, motivating an analysis of the behaviour of the learning curve i.e. the gain in performance when including more samples.
 
 
 ## 4. Implementation
