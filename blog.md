@@ -241,3 +241,8 @@ Joseph Krueger:
 Vassil Atanassov:
   * Work on Tensorflow implementation: Created a tool to rescale the dataset images, attempted to re-train (and adapt) the model; tune model parameters to attempt to lower the GPU costs (unsuccesful). Ran the pre-trained model on the different NMD dataset cities and Berkeley dataset, and collected results (quantitative and qualitative).
   * Work on blog post: Sections 2.1, 2.2, 2.3, 4
+
+Gabriel Alayon Blanco:
+  * Attempted to run tensorflow implementation on virtual Ubuntu PC but not enough RAM.
+  * Researched datasets used and found up to date links (the ones from paper were expired)
+  * Results & Dataset section of article description in 2.4 & 4
