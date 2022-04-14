@@ -153,7 +153,7 @@ Since the PyTorch model was largely unfinished, our team decided to use the Tens
 The tensorflow implementation made use of the datasets from the paper (Cityscapes, SYNTHIA, GTA5) and additionally used a database "NMD Database" they had developed which was made of images from Taipei, Tokyo, Roma & Rio. Table 3 shows some more detail about the NMD Dataset.
 <p style="text-align: center;">Table 3: NMD Dataset features</p>
 <p>
-<img src="https://i.imgur.com/ksPBiZ0.png" width="641" height="118" />
+<img src="https://i.imgur.com/ksPBiZ0.png" width="500" height="80" />
   
 [Source](https://yihsinchen.github.io/segmentation_adaptation/#Dataset)
   
