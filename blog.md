@@ -219,6 +219,7 @@ Reproducibility was not succesful in this case and in the above we have evaluate
 Ane Cathrine: 
   * Work on implementation: Attempt on PyTorch code, attempt on running tensorflow through Colab, Cmake gui, linux compiler cygwin64, Ubuntu terminal environment with Windows Subsystem for Linux. 
   * Work on blog post: Section 2.4, Section 3, Section 5. 
+
 Joseph Krueger:
   * Worked on getting Pytorch implementation finished, attempted at running Tensorflow on a virtual machine but ran out of vRAM.
   * Picked and analyzed results for the results section of the blog.
