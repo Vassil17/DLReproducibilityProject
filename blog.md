@@ -116,15 +116,16 @@ The image below shows an example of a medium domain shift across seasons. There 
 
   
   
-## 3. Plans for reproducibility project. NOT FINISHED
+## 3. Plans for reproducibility project.
 The results presented above is what we were to reproduce, namely the performance on adaption from synthetic to real data using GTA5 and SYNTHIA.
 Bases on our understanding of the paper, we identified several analyses of interest. 
 
-* Apply the method to different domain adaption tasks. The majority of the data that the article is based upon is related to cities, wether it being in different cities, in different seasons or synthetic vs. real. It could be interesting to experiment with alternative settings such as FIND EXAMPLES + DATASETS. What kind of challenge is this (large, medium, small?) 
-* Including ablation study with category-speicific adaption. The effect of the CA part would be interesting for further examination, as the magnitude of improvement seemed to vary across datasets. 
-* Changing constraints in CA? 
-* Learning curve for different number of data samples?
-* Changing the weights for the terms in the loss function (for example give a weight of 0.8 to GA loss and 0.2 to CA on the loss function)
+* Apply the method to different domain adaption tasks. The majority of the data that the article is based upon is related to cities, wether it being in different cities, in different seasons or synthetic vs. real. Another interesting application within computer vision is medical images, where unlabeled data often exceeds labeled data, and where the data distribution can vary because of differenct devices obtained the images, or the procedure of taking the images itself. The article _Adaptive adversarial neural networks for the analysis of lossy and domain-shifted datasets of medical images_ https://www.nature.com/articles/s41551-021-00733-w  was inspiration for this kind of analysis, data in form of images of embroyes among other things are available here https://osf.io/3kc2d/.
+  
+* Closer examination of the effect of category-speicific adaption (CA). The magnitude of improvement seemed to vary across datasets when looking at the results table, and further studies about the actual gain of including CA would have been interesting, for example by using different sample sizes or data augmentation of the available data.  
+
+* Lastly, the model is trained and evaluated on large amount of data, motivating an analysis of the behaviour of the learning curve ie. the gain in performance when including more samples.
+
 
  
 ## 3. Implementation
