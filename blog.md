@@ -128,10 +128,10 @@ Bases on our understanding of the paper, we identified several analyses of inter
 
 
 ## 4. Implementation
-There were two implementations available for this paper: one in PyTorch (link) and one in TensorFlow (link).
+There were two implementations available for this paper: one in PyTorch https://github.com/Wanger-SJTU/FCN-in-the-wild and one in TensorFlow https://github.com/stu92054/Domain-adaptation-on-segmentation/tree/master/FCNs_Wild , neither from the authors themselves.
 
 ### PyTorch implementation:
-This implementation provides the code for obtaining the pre-trained VGG16 network and then further trains it on the GTA5 annotated dataset for semantic segmentation. However, the implementation is still work-in-progress and is missing the main parts of the paper - namely the domain adaptation adversarial training. Furthermore, the paper itself does not provide in-depth description of the hyperparameters used and the architecture. For this reason, we decided not to use this implementation and instead focused on the alternative TensorFlow implementation.
+This implementation provides the code for obtaining the pre-trained VGG16 network and then further trains it on the GTA5 annotated dataset for semantic segmentation. However, the implementation is still work-in-progress and is missing the main parts of the paper - namely the domain adaptation adversarial training. Furthermore, the paper itself does not provide in-depth description of the hyperparameters used and the architecture. For this reason, we decided not to use this implementation and instead focused on the alternative TensorFlow implementation as recommended by our TAs. 
 
 ### TensorFlow implementation:
 The second available implementation of the paper was written in a combination of C++ and Python using TensorFlow 1.1. The use of C++ required a compiler and since installing a compiler like cmake on Windows is a tedious process, we used a native Ubuntu installation to run the network. The implementation itself was complete and an trained model was available. This model was trained on the CityScapes dataset and then adapted on a different dataset - NMD, which also contains real-life photos of city landscape. 
