@@ -127,8 +127,7 @@ Bases on our understanding of the paper, we identified several analyses of inter
 * Lastly, the model is trained and evaluated on large amount of data, motivating an analysis of the behaviour of the learning curve ie. the gain in performance when including more samples.
 
 
- 
-## 3. Implementation
+## 4. Implementation
 There were two implementations available for this paper: one in PyTorch (link) and one in TensorFlow (link).
 
 ### PyTorch implementation:
@@ -163,9 +162,6 @@ We adapted the provided scripts in order to use the specific datasets used in th
 Since we were not able to train the model, we decided to instead test how well it generalises to cities that it has not seen before. While the idea of the model is to transfer the learning to a new domain using by training on some unlabelled data from the target domain, it can still be worthwile to see if a model trained on source A and adapted to target B can perform well on a new data set C. While the best performance will be certainly obtained by first adapting the network to the new city, this process requires a complete re-training of the model, which as we saw is computationally expensive, both in terms of GPU memory requirements, and also possibly in terms of training time. Unfortunately the authors did not disclose the hardware that they performed the training on, as well as the training time that it took, so we have to base our assumptions on the observations from trying to train the model on our hardware. 
 
 We tested the Cityscapes-to-Taipei model on three other cities from the NMD dataset - Tokyo, Rio and Rome. All four cities are quite different from each other, both geographically and architecturally, which could show some interesting results regarding the generalisation capabilities of the model. Furthermore, we tested the performance on some of the data from the Berkeley dataset (that the original paper adapted to), however, due to differences in the dataset labelling format we were only able to obtain qualitative results (in the form of images) and no IoU data.
-  
-  
-INSERT TABLE WITH RESULTS
 
   
 First let's qualitatively analyse some of the images from Taipei, the city that the model was adapted to:
@@ -206,5 +202,11 @@ Berkeley:
  ![7d15b18b-1e0d6e3f](https://user-images.githubusercontent.com/51253916/162824405-c4b200cb-dfc6-404f-8b07-e187d49f5d10.png)
 ![7daa6479-67988f3f](https://user-images.githubusercontent.com/51253916/162824543-bbae2c4c-3f2e-4954-b7c6-a90ffd2b2c5f.png)
 
-## 4. Perspective to Edward Raff 2019 'A Step Toward Quantifying Independently Reproducible Machine Learning Research'. 
-Reproducibility was not succesful in this case and in the above we have evaluated our own challenges in this process. Although the main reason for lack of reproducibility was the GPU requirements for training the model, we also find it relevant to evaluate the article _FCNs in the Wild: Pixel-level Adversarial and Constraint-based Adaptation_ against the seminar paper from Week 2; 'A Step Toward Quantifying Independently Reproducible Machine Learning Research' by Edward Raff. _Readability_ was shown to be the most significant feature in terms of reproduction, and in our subjective evaluation of _FCNs in the Wild: Pixel-level Adversarial and Constraint-based Adaptation_ there are room for improvement in terms of better language use. The information given is very comprehensive and included in some long sentences. The paper required multiple read-throughs to get a good sense of the methodology. Lastly we can relate to Edward Raff's suggestions for non-reproducibility, there were some missing details in terms of explaning the algorithm, particularly the discriminator function wheere information about the distance measure for the global adaption, and additionally no information was given about the hyperparameters. In conclusion, besides the non-triviality of running the code, this was indeed a challenging paper for reproduction and we hope that future groups will have more luck!  
+## 5. Perspective to Edward Raff 2019 'A Step Toward Quantifying Independently Reproducible Machine Learning Research'. 
+Reproducibility was not succesful in this case and in the above we have evaluated our own challenges in this process. Although the main reason for lack of reproducibility was the GPU requirements for training the model, we also find it relevant to evaluate the article _FCNs in the Wild: Pixel-level Adversarial and Constraint-based Adaptation_ against the seminar paper from Week 2; 'A Step Toward Quantifying Independently Reproducible Machine Learning Research' by Edward Raff. _Readability_ was shown to be the most significant feature in terms of reproduction, and in our subjective evaluation of _FCNs in the Wild: Pixel-level Adversarial and Constraint-based Adaptation_ there are room for improvement in terms of better language use. The information given is very comprehensive and included in some long sentences. The paper required multiple read-throughs to get a good sense of the methodology. Lastly we can relate to Edward Raff's suggestions for non-reproducibility, there were some missing details in terms of explaning the algorithm, particularly the discriminator function where information about the distance measure for the global adaption, and additionally no information was given about the hyperparameters. In conclusion, besides the non-triviality of running the code, this was indeed a challenging paper for reproduction and we hope that future groups will have more luck!  
+  
+## 6. Individual work 
+  
+Ane Cathrine: 
+  * Work on implementation: Attempt on PyTorch code, attempt on running tensorflow through Colab, Cmake gui, linux compiler cygwin64, Ubuntu terminal environment with Windows Subsystem for Linux. 
+  * Work on blog post: Section 2.4, Section 3, Section 5. 
