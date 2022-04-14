@@ -68,8 +68,14 @@ There were three datasets that were used in the paper for various domain adaptat
 #### Method
 
    **Baseline model**
- The paper uses a dilated fully convolutional network VGGNet with 16 layers as the baseline. Dilated convolution means that the size of kernel is expanded by inserting empty spaces so that some pixels are skipped when performin the convolution operation. This way more of the receptive field is covered without the need for learning more parameters. After the last convolutional layers they make use of bilinear up sampling to produce segmentation in same resolution as the input. 
-   
+ The paper uses a dilated fully convolutional network VGGNet with 16 layers as the baseline. Dilated convolution means that the size of kernel is expanded by inserting empty spaces so that some pixels are skipped when performin the convolution operation. This way more of the receptive field is covered without the need for learning more parameters. After the last convolutional layers they make use of bilinear up sampling to produce segmentation in same resolution as the input. Below you can see the general architecture of the full model, as illustrated in the original paper. We will explain how the domain adaptation is achieved in the next section.
+
+<p>
+<img src="https://user-images.githubusercontent.com/69580104/163430418-0a4b89bb-9c72-4c0d-8d13-0c36d56c54d2.png" width="400" height="256" />
+  
+[Source](https://arxiv.org/pdf/1612.02649.pdf)
+  
+<p>
 **Domain adaption**   
 The method combines two parts for dealing with adaption. A part that deals with global changes and a part that deals with category-specific changes. The global changes relate to a shift in the marginal distribution of the feature space – this is most obvious when the domains are very different such as real and simulated data. The category-specific changes relate to differences in category-specific features such as occurrence of objects. The framework consists of a source domain with labeled images and a target domain with unlabelled images. The loss function consists of three main parts: 
    
@@ -83,7 +89,8 @@ The method combines two parts for dealing with adaption. A part that deals with 
 The first objective seek to finding the parameters that will minimise the distance between the source and target domain. The second objective will train a classifier to distinguish between source and target domain and hereby estimate a distance function. The result is then that the model learns the best possible classifier and use this information to learn the parameters that can minimise this difference. 
    
 * 3. _Lmi_ is the category-specific adaption using images from the target domain _It_ and label statistics transferred from the source domain. For each source image containing a class c the percentage of pixels whose true label is class c is computed. The purpose is that pixels in the target domain is assigned to classes within the expected range based on the source domain. This paper has the additional contribution that it uses the lower and top 10% as well as the average value for these contraints compared to prior work that often uses just a single threshold. For the predictions it is also computed the percentage of pixels that are assigned to each class, and a label is assigned if the model has predicted at least 10% of what is expected for that class. In that way information from a supervised setting is transferred to an unsupervised setting. 
-
+  
+   
 #### Applications and Results
 The paper presented results with various adaptations, ranging from mild to more drastic differences between the two domains. The method was applied to three different types of domain adaption tasks, namely between cities (small shift), between seasons as well as between synthetic and real data (large shift). Cityscapes is used as target domain for all three domain shifts and also the source domain for cities-->cities.  SYNTHIA is used as source domain both for the application of season->season and synthetic -> real. GTA5 is used as source domain for synthetic-->real. BDDS is used as both source and target domain for cities-->cities. All together this represents shifts of various challenge for the model. 
 
@@ -230,4 +237,4 @@ Joseph Krueger:
   
 Vassil Atanassov:
   * Work on Tensorflow implementation: Created a tool to rescale the dataset images, attempted to re-train (and adapt) the model; tune model parameters to attempt to lower the GPU costs (unsuccesful). Ran the pre-trained model on the different NMD dataset cities and Berkeley dataset, and collected results (quantitative and qualitative).
-  * Work on blog post: Sections 2.1,2.2,2.3, 4
+  * Work on blog post: Sections 2.1, 2.2, 2.3, 4
