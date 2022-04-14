@@ -187,25 +187,30 @@ Now we'll look at a few images from Rome, which is another one of the test citie
   
 It seems that the model is quite good at segmenting cars and folliage, however, that was a noticeable lack of pedestrians in the test images for this dataset. The segmentation of pedestrians in the few images that do contain them seems to be quite coarse and also sometimes misclassifies pedestrian and motorcycle.
  
-Rio:
+In the Rio dataset there was more pedestrians, but it struggled more with surface detection.
   
 ![image](https://user-images.githubusercontent.com/69580104/162591742-3077228b-3cc4-4d1b-9e61-44a9431fe750.png)
 ![image](https://user-images.githubusercontent.com/69580104/162591751-b26fed72-4f85-4f53-9f27-dd4445caad37.png)
 ![image](https://user-images.githubusercontent.com/69580104/162591762-27e136f1-af8d-487f-8f48-f1240ef205dc.png)
   
-Tokyo:
+It mis-classified the a large majority of the racks of bikes, and constantly struggles with differentiating between sidewalks and roads. It really aggressively identified vegetation however, even to the point of detecting it in places where there was none.
   
+Tokyo exhibited a different issue.
+
  ![pano_00022_2_0](https://user-images.githubusercontent.com/51253916/163423804-1ee00aa4-ee15-41c4-b0ca-85184696192c.png)
  ![pano_00320_0_180](https://user-images.githubusercontent.com/51253916/163423834-4ffc8e2c-97f2-40d1-94ff-90a36c69ecd1.png)
 ![pano_01364_2_0](https://user-images.githubusercontent.com/51253916/163423905-fd741aa8-c9a3-4ec5-8c41-11a95bb27b69.png)
 
+The model over identified pedestrians in the images, and even confused traffic cones for flamboyantly dressed citizens. Most of the images also had many small blobs of mis-identified areas all across the image. It could be the that the domain was different enough to confuse the model.
   
-Berkeley: 
+Berkley's main difference between the other datasets was the prevalence of a car hood in most of the images and dark or rainy images. Below are some more consistent examples.
   
  ![7dc08598-f42e2015](https://user-images.githubusercontent.com/51253916/162824355-6845dd9f-bc40-48eb-a25f-628603b78982.png)
  ![7d15b18b-1e0d6e3f](https://user-images.githubusercontent.com/51253916/162824405-c4b200cb-dfc6-404f-8b07-e187d49f5d10.png)
 ![7daa6479-67988f3f](https://user-images.githubusercontent.com/51253916/162824543-bbae2c4c-3f2e-4954-b7c6-a90ffd2b2c5f.png)
 
+
+  
 ## 5. Perspective to Edward Raff 2019 'A Step Toward Quantifying Independently Reproducible Machine Learning Research'. 
 Reproducibility was not succesful in this case and in the above we have evaluated our own challenges in this process. Although the main reason for lack of reproducibility was the GPU requirements for training the model, we also find it relevant to evaluate the article _FCNs in the Wild: Pixel-level Adversarial and Constraint-based Adaptation_ against the seminar paper from Week 2; 'A Step Toward Quantifying Independently Reproducible Machine Learning Research' by Edward Raff. _Readability_ was shown to be the most significant feature in terms of reproduction, and in our subjective evaluation of _FCNs in the Wild: Pixel-level Adversarial and Constraint-based Adaptation_ there are room for improvement in terms of better language use. The information given is very comprehensive and included in some long sentences. The paper required multiple read-throughs to get a good sense of the methodology. Lastly we can relate to Edward Raff's suggestions for non-reproducibility, there were some missing details in terms of explaning the algorithm, particularly the discriminator function where information about the distance measure for the global adaption, and additionally no information was given about the hyperparameters. In conclusion, besides the non-triviality of running the code, this was indeed a challenging paper for reproduction and we hope that future groups will have more luck!  
   
@@ -215,4 +220,6 @@ Ane Cathrine:
   * Work on implementation: Attempt on PyTorch code, attempt on running tensorflow through Colab, Cmake gui, linux compiler cygwin64, Ubuntu terminal environment with Windows Subsystem for Linux. 
   * Work on blog post: Section 2.4, Section 3, Section 5. 
 Joseph Krueger:
-  * 
+  * Worked on getting Pytorch implementation finished, attempted at running Tensorflow on a virtual machine but ran out of vRAM.
+  * Picked and analyzed results for the results section of the blog.
+  * Designed and printed project poster
